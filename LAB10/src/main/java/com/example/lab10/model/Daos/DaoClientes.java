@@ -1,10 +1,12 @@
 package com.example.lab10.model.Daos;
 
 import com.example.lab10.model.Beans.Clientes;
+import com.example.lab10.model.Beans.Contratos;
+
 import java.sql.*;
 import java.util.ArrayList;
 
-public class DaoClientes {
+public class DaoClientes extends DaoBase{
     public ArrayList<Clientes> listarClientes(){
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -48,4 +50,54 @@ public class DaoClientes {
         }
         return lista;
     }
+
+    public ArrayList<Contratos> listarContratos (int idCliente){
+
+        ArrayList<Contratos> contratos = new ArrayList<>();
+        String sql = "select contrato.g6789_contract,\n" +
+                "contrato.client_nro_id,\n" +
+                "contrato.g6789_currency,   \n" +
+                "case when contrato.G6789_status=0 then 'Normal' when contrato.G6789_status=1 then 'Cura' when contrato.G6789_status=2 then 'Mora' end as 'estado', \n" +
+                "contrato.g6789_months \n" +
+                "from jm_cotr_bis contrato \n" +
+                "inner join jm_client_bii cliente on (cliente.g4093_nro_id = contrato.client_nro_id)\n" +
+                "where cliente.g4093_nro_id = ?";
+
+        try (Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setInt(1, idCliente);
+
+            try (ResultSet rs = pstmt.executeQuery()){
+                while (rs.next()){
+                    Contratos contrato = new Contratos();
+
+                    contrato.setNroDeContrato(String.valueOf(rs.getInt(1)));
+                    contrato.setIdCliente(rs.getInt(2));
+                    contrato.setDivisa(rs.getString(3));
+                    contrato.setEstado(rs.getString(4));
+                    contrato.setMesesEnEseEstado(rs.getInt(5));
+
+                    contratos.add(contrato);
+
+                }
+            }
+
+        }catch (SQLException e){
+            throw new RuntimeException();
+        }
+
+        return contratos;
+    }
+
+    public Clientes buscarCliente(int idCliente){
+
+        String sql = "";
+
+        try (Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+        }
+    }
+
 }
