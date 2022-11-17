@@ -11,13 +11,14 @@
         <title>Login</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.84.0">
         <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sign-in/">
+
         <!-- Bootstrap core CSS -->
-        <link href="assets/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-        <!-- Favicons -->
+        <link href="assets/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <meta name="theme-color" content="#7952b3">
-
         <style>
             .bd-placeholder-img {
                 font-size: 1.125rem;
@@ -33,36 +34,29 @@
                 }
             }
         </style>
-
-        <!-- Custom styles for this template -->
         <link href="assets/signin.css" rel="stylesheet">
 
     </head>
-    <body>
+    <body class="text-center">
 
         <main class="form-signin">
-            <form>
-                <img class="mb-4" src="assets/bootstrap-logo.svg" alt="" width="72" height="57">
-                <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+            <form method="post">
+                <img class="mb-4" src="assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+                <h1 class="h3 mb-3 fw-normal">Login</h1>
 
                 <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                    <label for="floatingInput">Email address</label>
+                    <input type="text" class="form-control" id="floatingInput" name="usuario" placeholder="name@example.com" required>
+                    <label for="floatingInput">Usuario</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                    <label for="floatingPassword">Password</label>
+                    <input type="password" class="form-control" id="floatingPassword" name="contrasena" placeholder="Password" required>
+                    <label for="floatingPassword">Contraseña</label>
                 </div>
-
-                <div class="checkbox mb-3">
-                    <label>
-                        <input type="checkbox" value="remember-me"> Remember me
-                    </label>
-                </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-                <p class="mt-5 mb-3 text-muted">&copy; 2017–2021</p>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar Sesión</button>
             </form>
         </main>
+
+
 
     </body>
 </html>

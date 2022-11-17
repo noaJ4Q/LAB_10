@@ -3,8 +3,8 @@ package com.example.lab10.model.Beans;
 public class Contratos {
     private String nroDeContrato;
     private int idCliente;
-    private int divisa;
-    private int estado;
+    private String divisa;
+    private String estado;
     private int mesesEnEseEstado;
 
     public String getNroDeContrato() {
@@ -23,19 +23,19 @@ public class Contratos {
         this.idCliente = idCliente;
     }
 
-    public int getDivisa() {
+    public String getDivisa() {
         return divisa;
     }
 
-    public void setDivisa(int divisa) {
+    public void setDivisa(String divisa) {
         this.divisa = divisa;
     }
 
-    public int getEstado() {
+    public String getEstado() {
         return estado;
     }
 
-    public void setEstado(int estado) {
+    public void setEstado(String estado) {
         this.estado = estado;
     }
 
