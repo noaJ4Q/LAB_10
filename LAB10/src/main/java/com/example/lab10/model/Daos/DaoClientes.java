@@ -1,7 +1,6 @@
 package com.example.lab10.model.Daos;
 
-import com.example.laboratorio9_20192858.model.beans.Clientes;
-
+import com.example.lab10.model.Beans.Clientes;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -41,7 +40,7 @@ public class DaoClientes {
                 client.setTipoCliente(variable);
                 client.setTipoDocumento(rs.getString(4));
                 client.setNumeroDocumento(rs.getString(5));
-                client.setCantidaddeContratos(rs.getInt(6));
+                //client.setCantidaddeContratos(rs.getInt(6));
                 lista.add(client);
             }
         } catch (SQLException e) {
