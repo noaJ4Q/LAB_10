@@ -15,16 +15,14 @@
     </head>
     <body>
 
-        <div class="container">
+        <div class="container" style="margin-top: 50px">
             <div class="row align-items-center">
-                <div class="col">
-                    One of three columns
-                </div>
-                <div class="col">
-                    One of three columns
-                </div>
-                <div class="col">
-                    One of three columns
+
+                <div class="d-grid gap-2 col-6 mx-auto">
+                    <button class="btn btn-primary" type="button">Mis datos</button>
+                    <button class="btn btn-primary" type="button">Contratos</button>
+                    <button class="btn btn-primary" type="button">Contratos por Estado</button>
+                    <button class="btn btn-primary" type="button">Puntaje máximo de Expected Loss</button>
                 </div>
             </div>
         </div>
