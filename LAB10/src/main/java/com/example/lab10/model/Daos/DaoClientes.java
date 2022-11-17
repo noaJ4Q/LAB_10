@@ -92,12 +92,37 @@ public class DaoClientes extends DaoBase{
 
     public Clientes buscarCliente(int idCliente){
 
-        String sql = "";
+        Clientes cliente = new Clientes();
+        String sql = "select cliente.g4093_name, \n" +
+                "g4093_age, \n" +
+                "case when cliente.g4093_type=\"N\" then \"Normal\" when cliente.g4093_type=\"J\" then \"Jurídico\" end as \"tipo\", \n" +
+                "cliente.g4093_documentType, \n" +
+                "cliente.g4093_nro_id \n" +
+                "from jm_client_bii cliente \n" +
+                "where cliente.g4093_nro_id = ?";
 
         try (Connection conn = this.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
 
+            pstmt.setInt(1, idCliente);
+
+            try (ResultSet rs = pstmt.executeQuery()){
+                if (rs.next()){
+
+                    cliente.setNombreCliente(rs.getString(1));
+                    cliente.setEdad(rs.getString(2));
+                    cliente.setTipoCliente(rs.getString(3));
+                    cliente.setTipoDocumento(rs.getString(4));
+                    cliente.setNumeroDocumento(rs.getString(5));
+
+                }
+            }
+
+        }catch (SQLException e){
+            throw new RuntimeException();
         }
+
+        return cliente;
     }
 
 }
