@@ -1,4 +1,4 @@
-package com.example.lab10.Beans;
+package com.example.lab10.model.Beans;
 
 public class Clientes {
 
