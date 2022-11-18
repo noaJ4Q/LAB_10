@@ -1,5 +1,6 @@
 package com.example.lab10.model.servlets;
 
+import com.example.lab10.model.Beans.Clientes;
 import com.example.lab10.model.Beans.Credentials;
 import com.example.lab10.model.Daos.DaoClientes;
 import jakarta.servlet.*;
@@ -7,6 +8,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 @WebServlet(name = "ServletLogin", value = "/")
 public class ServletLogin extends HttpServlet {
@@ -33,9 +35,12 @@ public class ServletLogin extends HttpServlet {
         if (credentials != null){
             switch (credentials.getTipoUsuario()){
                 case 1:
-                    request.setAttribute("numeroDocumento", credentials.getNumeroDocumento());
-                    vista = request.getRequestDispatcher("cliente.jsp");
-                    vista.forward(request, response);
+
+                    HttpSession session = request.getSession();
+                    Clientes cliente = daoClientes.buscarCliente(credentials.getNumeroDocumento());
+                    session.setAttribute("cliente", cliente);
+                    response.sendRedirect(request.getContextPath()+"/inicio");
+
                     break;
                 case 2:
                     vista = request.getRequestDispatcher("crearCliente.jsp");

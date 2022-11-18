@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:useBean id="cliente" type="com.example.lab10.model.Beans.Clientes" class="com.example.lab10.model.Beans.Clientes" scope="session"></jsp:useBean>
 <html>
     <head>
         <title>Cliente</title>
@@ -42,12 +43,33 @@
         <div class="container">
             <header class="d-flex justify-content-center py-3 border-bottom">
                 <ul class="nav nav-pills">
-                    <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Mis Datos</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Contratos</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Contratos por Estado</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">Puntaje máximo de Expected Loss</a></li>
+                    <li class="nav-item"><a href="<%=request.getContextPath()%>/inicio" class="nav-link active" aria-current="page">Mis Datos</a></li>
+                    <li class="nav-item"><a href="<%=request.getContextPath()%>/inicio?action=contratos" class="nav-link">Contratos</a></li>
+                    <li class="nav-item"><a href="<%=request.getContextPath()%>/inicio?action=contratosxe" class="nav-link">Contratos por Estado</a></li>
+                    <li class="nav-item"><a href="<%=request.getContextPath()%>/inicio?action=puntaje" class="nav-link">Puntaje máximo de Expected Loss</a></li>
                 </ul>
             </header>
+        </div>
+
+        <div class="container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Tipo de Persona</th>
+                        <th scope="col">Número de Documento</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><%=cliente.getNombreCliente()%></th>
+                        <td><%=cliente.getEdad()%></td>
+                        <td><%=cliente.getTipoCliente()%></td>
+                        <td><%=cliente.getNumeroDocumento()%></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"

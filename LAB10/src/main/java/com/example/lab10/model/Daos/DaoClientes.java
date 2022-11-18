@@ -52,7 +52,7 @@ public class DaoClientes extends DaoBase{
         return lista;
     }
 
-    public ArrayList<Contratos> listarContratos (int idCliente){
+    public ArrayList<Contratos> listarContratos (String idCliente){
 
         ArrayList<Contratos> contratos = new ArrayList<>();
         String sql = "select contrato.g6789_contract,\n" +
@@ -67,7 +67,7 @@ public class DaoClientes extends DaoBase{
         try (Connection conn = this.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-            pstmt.setInt(1, idCliente);
+            pstmt.setString(1, idCliente);
 
             try (ResultSet rs = pstmt.executeQuery()){
                 while (rs.next()){
@@ -91,7 +91,7 @@ public class DaoClientes extends DaoBase{
         return contratos;
     }
 
-    public Clientes buscarCliente(int idCliente){
+    public Clientes buscarCliente(String idCliente){
 
         Clientes cliente = new Clientes();
         String sql = "select cliente.g4093_name, \n" +
@@ -105,7 +105,7 @@ public class DaoClientes extends DaoBase{
         try (Connection conn = this.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
 
-            pstmt.setInt(1, idCliente);
+            pstmt.setString(1, idCliente);
 
             try (ResultSet rs = pstmt.executeQuery()){
                 if (rs.next()){
@@ -129,7 +129,7 @@ public class DaoClientes extends DaoBase{
     public Credentials buscarUsuario(String numeroDocumento, String password){
         Credentials credentials = null;
 
-        String sql = "select nro_documento, tipoUsuario from credential where nro_documento = ? and password = ?";
+        String sql = "select nro_documento, tipoUsuario from credentials where nro_documento = ? and password = ?";
 
         try (Connection conn = this.getConnection();
             PreparedStatement pstmt = conn.prepareStatement(sql)){
@@ -139,6 +139,7 @@ public class DaoClientes extends DaoBase{
 
             try (ResultSet rs = pstmt.executeQuery()){
                 if (rs.next()){
+                    credentials = new Credentials();
                     credentials.setNumeroDocumento(rs.getString(1));
                     credentials.setTipoUsuario(rs.getInt(2));
                 }
