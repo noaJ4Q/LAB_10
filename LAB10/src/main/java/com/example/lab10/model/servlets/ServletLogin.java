@@ -25,14 +25,30 @@ public class ServletLogin extends HttpServlet {
         String numeroDocumento = request.getParameter("numeroDocumento");
         String password = request.getParameter("password");
 
+        RequestDispatcher vista;
+
         DaoClientes daoClientes = new DaoClientes();
         Credentials credentials = daoClientes.buscarUsuario(numeroDocumento, password);
 
         if (credentials != null){
-
+            switch (credentials.getTipoUsuario()){
+                case 1:
+                    request.setAttribute("numeroDocumento", credentials.getNumeroDocumento());
+                    vista = request.getRequestDispatcher("cliente.jsp");
+                    vista.forward(request, response);
+                    break;
+                case 2:
+                    vista = request.getRequestDispatcher("crearCliente.jsp");
+                    vista.forward(request, response);
+                    break;
+            }
         }
         else {
 
+            HttpSession session = request.getSession();
+            session.setAttribute("msg", "Datos erróneos");
+            vista = request.getRequestDispatcher("login.jsp");
+            vista.forward(request, response);
         }
 
 

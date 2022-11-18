@@ -52,6 +52,14 @@
                     <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
                     <label for="floatingPassword">Contraseña</label>
                 </div>
+                <%if (session.getAttribute("msg") != null){%>
+                <div class="form-floating">
+                    <div class="alert alert-danger" role="alert">
+                        <%=session.getAttribute("msg")%>
+                    </div>
+                </div>
+                <%session.removeAttribute("msg");%>
+                <%}%>
                 <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar Sesión</button>
             </form>
         </main>
