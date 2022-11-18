@@ -2,6 +2,7 @@ package com.example.lab10.model.Daos;
 
 import com.example.lab10.model.Beans.Clientes;
 import com.example.lab10.model.Beans.Contratos;
+import com.example.lab10.model.Beans.Credentials;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -123,6 +124,31 @@ public class DaoClientes extends DaoBase{
         }
 
         return cliente;
+    }
+
+    public Credentials buscarUsuario(String numeroDocumento, String password){
+        Credentials credentials = null;
+
+        String sql = "select nro_documento, tipoUsuario from credential where nro_documento = ? and password = ?";
+
+        try (Connection conn = this.getConnection();
+            PreparedStatement pstmt = conn.prepareStatement(sql)){
+
+            pstmt.setString(1, numeroDocumento);
+            pstmt.setString(2, password);
+
+            try (ResultSet rs = pstmt.executeQuery()){
+                if (rs.next()){
+                    credentials.setNumeroDocumento(rs.getString(1));
+                    credentials.setTipoUsuario(rs.getInt(2));
+                }
+            }
+
+        }catch (SQLException e){
+            throw new RuntimeException();
+        }
+
+        return credentials;
     }
 
 }

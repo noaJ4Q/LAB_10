@@ -1,14 +1,14 @@
 <%--
   Created by IntelliJ IDEA.
   User: noqe2
-  Date: 16/11/2022
-  Time: 20:34
+  Date: 17/11/2022
+  Time: 18:36
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
     <head>
-        <title>Login</title>
+        <title>Crear Cliente</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
@@ -41,18 +41,21 @@
 
         <main class="form-signin">
             <form method="post">
-                <img class="mb-4" src="assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-                <h1 class="h3 mb-3 fw-normal">Login</h1>
+                <h1 class="h3 mb-3 fw-normal">Crear Cliente</h1>
 
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="floatingInput" name="numeroDocumento" placeholder="name@example.com" required>
-                    <label for="floatingInput">Usuario</label>
+                    <select required class="form-select" id="usuario" name="numeroDocumento">
+                        <option value="">Seleccione un documento</option>
+
+                    </select>
+
+                    <label for="usuario">Número de Documento</label>
                 </div>
                 <div class="form-floating">
-                    <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password" required>
+                    <input type="password" class="form-control" id="floatingPassword" name="contrasena" placeholder="Ingrese una contraseña" required>
                     <label for="floatingPassword">Contraseña</label>
                 </div>
-                <button class="w-100 btn btn-lg btn-primary" type="submit">Iniciar Sesión</button>
+                <button class="w-100 btn btn-lg btn-primary" type="submit">Crear</button>
             </form>
         </main>
 
